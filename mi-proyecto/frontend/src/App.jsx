@@ -35,13 +35,29 @@
 
 
 
+//import RegisterForm from './components/RegisterForm';
+//
+//function App() {
+//  return (
+//    <div>
+//      <h1>Bienvenido a Mi Proyecto</h1>
+//      <RegisterForm />
+//    </div>
+//  );
+//}
+//
+//export default App;
+
+
 import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
     <div>
       <h1>Bienvenido a Mi Proyecto</h1>
-      <RegisterForm />
+      {/* <RegisterForm /> */}
+      <LoginForm />
     </div>
   );
 }
