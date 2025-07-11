@@ -1,17 +1,19 @@
+// backend/middleware/auth.js
+
 const jwt = require('jsonwebtoken');
 
-function authMiddleware(req, res, next) {
-  // El token puede venir en headers (Authorization: Bearer <token>)
+module.exports = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  if (!authHeader) return res.status(401).json({ error: 'Token requerido' });
 
-  if (!token) return res.status(401).json({ error: 'Token no proporcionado' });
+  const token = authHeader.split(' ')[1]; // formato: Bearer <token>
+  if (!token) return res.status(401).json({ error: 'Token inválido' });
 
-  jwt.verify(token, process.env.JWT_SECRET || 'secreto123', (err, usuario) => {
-    if (err) return res.status(403).json({ error: 'Token inválido' });
-    req.usuario = usuario; // Guarda info del usuario en la request
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secreto123');
+    req.usuario = decoded; // Pasa los datos del usuario al request
     next();
-  });
-}
-
-module.exports = authMiddleware;
+  } catch {
+    return res.status(401).json({ error: 'Token inválido o expirado' });
+  }
+};
