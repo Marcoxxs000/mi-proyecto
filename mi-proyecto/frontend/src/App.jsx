@@ -5,32 +5,38 @@ import RegisterForm from './components/RegisterForm';
 import Perfil from './components/Perfil';
 
 // Paleta de colores para cada tipo de usuario
+// Puedes poner esto en App.jsx o en un archivo de estilos temáticos.
+
 const themes = {
   visitante: {
-    primary: '#ececec',
-    accent: '#333',
-    navBg: '#fafafa',
+    primary: '#23272F',     // Fondo general oscuro
+    accent: '#61dafb',      // Azul React
+    navBg: '#181A20',       // Fondo navbar oscuro
     name: 'Visitante'
   },
   usuario: {
-    primary: '#cff6fd', // Celeste pastel
-    accent: '#005f73',
-    navBg: '#b6e8f6',
+    primary: '#262A34',
+    accent: '#9cfffa',      // Verde-agua pastel
+    navBg: '#1b1e25',
     name: 'Usuario'
   },
   admin: {
-    primary: '#fff9c4', // Amarillo pastel
-    accent: '#9b870c',
-    navBg: '#fff7a4',
+    primary: '#2B2922',
+    accent: '#ffe47a',      // Amarillo pastel claro
+    navBg: '#22211b',
     name: 'Administrador'
   }
 };
 
 const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background: ${({theme}) => theme.primary};
   min-height: 100vh;
+  width: 100vw; 
   font-family: 'Segoe UI', sans-serif;
   color: ${({theme}) => theme.accent};
+  overflow-x: hidden;
 `;
 
 const Header = styled.header`
@@ -77,7 +83,9 @@ const NavLink = styled.button`
 `;
 
 const Main = styled.main`
-  max-width: 800px;
+  flex: 1 0 auto;   // Esto hace la magia
+  width: 100%;
+  max-width: 70%;     // O 100vw si quieres todo el ancho, pero 1200px es más legible
   margin: 2rem auto;
   background: #fff6;
   padding: 2rem;
@@ -85,6 +93,7 @@ const Main = styled.main`
   min-height: 300px;
   box-shadow: 0 2px 12px #0001;
 `;
+
 
 const Footer = styled.footer`
   text-align: center;
@@ -135,7 +144,7 @@ function App() {
         </p>
       </>
     ),
-    servicios: <p>Estos son nuestros servicios: ... (contenido de ejemplo)</p>,
+    servicios: <p>Estos son nuestros servicios: miralos (contenido de ejemplo)</p>,
     acerca: <p>Acerca de este sitio: ... (contenido de ejemplo)</p>,
     contacto: <p>Contáctanos: ... (contenido de ejemplo)</p>,
     perfil: usuario ? <Perfil token={token} /> : <p>Inicia sesión para ver tu perfil.</p>
