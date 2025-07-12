@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Perfil from './components/Perfil';
+import MemoryGame from './components/MemoryGame';
 
 // Paleta de colores para cada tipo de usuario
 // Puedes poner esto en App.jsx o en un archivo de estilos temáticos.
@@ -124,6 +125,7 @@ function App() {
   // Secciones principales
   const secciones = [
     { id: 'inicio', nombre: 'Inicio' },
+    { id: 'juego', nombre: 'Juego de memoria' },
     { id: 'servicios', nombre: 'Servicios' },
     { id: 'acerca', nombre: 'Acerca de' },
     { id: 'contacto', nombre: 'Contacto' },
@@ -144,6 +146,7 @@ function App() {
         </p>
       </>
     ),
+    juego: <MemoryGame />,
     servicios: <p>Estos son nuestros servicios: miralos (contenido de ejemplo)</p>,
     acerca: <p>Acerca de este sitio: ... (contenido de ejemplo)</p>,
     contacto: <p>Contáctanos: ... (contenido de ejemplo)</p>,
