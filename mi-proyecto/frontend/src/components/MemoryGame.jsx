@@ -131,7 +131,7 @@ function calcularPuntaje({ digitos, cantidad, tiempoMemoria, tiempoBloqueo, acie
   const factorCantidad = getFactorCantidadNumeros(cantidad);
   const factorMemoria = getFactorTiempoMemoria(tiempoMemoria);
   const factorBloqueo = getFactorBloqueo(tiempoBloqueo);
-  const puntajeBase = multiplicadorD * factorCantidad * factorMemoria * factorBloqueo;
+  const puntajeBase = 1000*multiplicadorD * factorCantidad * factorMemoria * factorBloqueo;
   const puntajeFinal = Math.round(puntajeBase * (aciertos / cantidad));
   return puntajeFinal;
 }
