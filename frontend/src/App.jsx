@@ -189,7 +189,7 @@ function App() {
       <AppContainer>
         <Header>
           <div />
-          <Title>Mi Proyecto Increíble</Title>
+          <Title>Mi Proyecto</Title>
           <LoginBox>
             {!usuario ? (
               <LoginForm onLogin={handleLogin} />
