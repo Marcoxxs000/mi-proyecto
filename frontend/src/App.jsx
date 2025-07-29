@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Perfil from './components/Perfil';
 import MemoryGame from './components/MemoryGame';
+import MemoryGame2 from './components/MemoryGame2';
 import TetrisGame from "./components/tetris/TetrisGame";
 import { api, setAuthToken } from './utils/api';
 
@@ -156,6 +157,7 @@ function App() {
   const secciones = [
     { id: 'inicio', nombre: 'Inicio' },
     { id: 'juegoMemoria', nombre: 'Juego de memoria' },
+    { id: 'juegoMemoria2', nombre: 'Juego de memoria 2' },
     { id: 'tetris', nombre: 'Tetris' },
     { id: 'servicios', nombre: 'Servicios' },
     { id: 'acerca', nombre: 'Acerca de' },
@@ -177,6 +179,7 @@ function App() {
       </>
     ),
     juegoMemoria: <MemoryGame />,
+    juegoMemoria2: <MemoryGame2 />,
     tetris: <TetrisGame />,
     servicios: <p>Estos son nuestros servicios: miralos (contenido de ejemplo)</p>,
     acerca: <p>Acerca de este sitio: ... (contenido de ejemplo)</p>,
