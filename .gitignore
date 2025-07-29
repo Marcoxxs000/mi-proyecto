@@ -1,0 +1,4 @@
+node_modules/
+.env
+proyecto_completo.txt
+concatenar.py
