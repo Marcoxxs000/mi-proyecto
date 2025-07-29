@@ -149,15 +149,16 @@ export default function MemoryGame() {
   const [respuestas, setRespuestas] = useState([]);
   const [resultado, setResultado] = useState(null);
 
-
-  function avanzarABloqueo() {
-  setFase(ESTADOS.BLOQUEO);
-  }
-
-  function avanzarAResponder() {
-    setFase(ESTADOS.RESPONDER);
-  }
-
+  // Maneja los temporizadores de cada fase
+  useEffect(() => {
+    let timer;
+    if (fase === ESTADOS.MOSTRAR) {
+      timer = setTimeout(() => setFase(ESTADOS.BLOQUEO), tiempoMemoria * 1000);
+    } else if (fase === ESTADOS.BLOQUEO) {
+      timer = setTimeout(() => setFase(ESTADOS.RESPONDER), tiempoBloqueo * 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [fase, tiempoMemoria, tiempoBloqueo]);
 
   // Añadir al historial cuando cambia a RESULTADO
   useEffect(() => {
@@ -210,33 +211,6 @@ export default function MemoryGame() {
     setRespuestas([]);
     setResultado(null);
   }
-{fase === ESTADOS.MOSTRAR && (
-  <>
-    <h3>Memoriza estos números:</h3>
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: `repeat(${cols}, 1fr)`,
-      gap: '10px',
-      justifyItems: 'center',
-      margin: 20
-    }}>
-      {numeros.map((num, i) => (
-        <span key={i} style={{ fontSize: 28, letterSpacing: 2 }}>{num}</span>
-      ))}
-    </div>
-    <button onClick={avanzarABloqueo}>Listo, ocultar</button>
-  </>
-)}
-
-{fase === ESTADOS.BLOQUEO && (
-  <>
-    <h3>¡Ocultado!</h3>
-    <div style={{ fontSize: 18, margin: 20 }}>Presiona cuando estés listo para responder…</div>
-    <button onClick={avanzarAResponder}>Estoy listo</button>
-  </>
-)}
-
-
 
   const { cols } = getGridDimensions(numeros.length || cantidad);
 
